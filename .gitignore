@@ -1,0 +1,49 @@
+config.h
+apprules.h
+dwm
+*.rej
+*.orig
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Executables
+*.out
+*.app
+*.exe
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Static libraries
+*.lai
+*.la
+*.a
+*.la
+*.lo
+*.def
+*.exp
+
+# Dependency directories
+.dirstamp
+.deps
+
+# Build directories
+bin/
+build/
