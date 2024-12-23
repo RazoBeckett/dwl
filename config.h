@@ -14,7 +14,7 @@ static const float rootcolor[]             = COLOR(0x000000ff);
 /* This conforms to the xdg-protocol. Set the alpha to zero to restore the old behavior */
 static const float fullscreen_bg[]         = {0.1f, 0.1f, 0.1f, 1.0f}; /* You can also use glsl colors */
 static const char *cursor_theme            = "Banana-Catppuccin-Mocha";
-static const char cursor_size[]            = "24"; /* Make sure it's a valid integer, otherwise things will break */
+static const char cursor_size[]            = "32"; /* Make sure it's a valid integer, otherwise things will break */
 static uint32_t colors[][3]                = {
 	/*               fg          bg          border    */
 	[SchemeNorm] = { 0xbbbbbbff, 0x222222ff, 0x444444ff },

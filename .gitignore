@@ -1,6 +1,6 @@
 config.h
 apprules.h
-dwm
+dwl
 *.rej
 *.orig
 
