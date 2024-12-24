@@ -32,6 +32,23 @@ static char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 /* logging */
 static int log_level = WLR_ERROR;
 
+static const Env envs[] = {
+	/* variable			value */
+	{ "XDG_CONFIG_HOME",		"$HOME/.config" },
+	{ "XDG_CACHE_HOME",		"$HOME/.cache" },
+	{ "XDG_DATA_HOME",		"$HOME/.local/share" },
+	{ "XDG_STATE_HOME",		"$HOME/.local/state" },
+	{ "XDG_DATA_DIRS",		"/usr/local/share/:/usr/share" },
+	{ "CARGO_HOME",			"$XDG_DATA_HOME/cargo" },
+	{ "CUDA_CACHE_PATH",		"$XDG_CACHE_HOME/nv" },
+	// { "PATH",			"$PATH:$HOME/.local/bin/statusbar" },
+	{ "GTK2_RC_FILES",		"$XDG_CONFIG_HOME/gtk-2.0/gtkrc" },
+	{ "EDITOR",			"nvim" },
+	{ "TERMINAL",			"alacritty" },
+	{ "BROWSER",			"zen-browser" },
+	{ "QT_QPA_PLATFORMTHEME",	"qt5ct" },
+};
+
 /* NOTE: ALWAYS keep a rule declared even if you don't use rules (e.g leave at least one example) */
 static const Rule rules[] = {
 	/* app_id             title       tags mask     isfloating   monitor */

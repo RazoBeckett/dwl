@@ -283,6 +283,11 @@ typedef struct {
 } Rule;
 
 typedef struct {
+	const char *variable;
+	const char *value;
+} Env;
+
+typedef struct {
 	struct wlr_scene_tree *scene;
 
 	struct wlr_session_lock_v1 *lock;
@@ -2841,6 +2846,57 @@ resize(Client *c, struct wlr_box geo, int interact)
 	wlr_scene_subsurface_tree_set_clip(&c->scene_surface->node, &clip);
 }
 
+void expand_env_vars(void) {
+    size_t i;
+    size_t var_len;
+    char value[1024];
+    char *pos;
+    char *var_start;
+    char *var_end;
+    char *env_value;
+    size_t env_len;
+    size_t remaining_len;
+
+    for (i = 0; i < LENGTH(envs); i++) {
+        strncpy(value, envs[i].value, sizeof(value) - 1);
+        value[sizeof(value) - 1] = '\0';
+        
+        pos = value;
+        while ((pos = strchr(pos, '$')) != NULL) {
+            var_start = pos + 1;
+            var_end = var_start;
+            
+            while (*var_end && (*var_end != '/' && *var_end != ':' && *var_end != ' ')) {
+                var_end++;
+            }
+            
+            var_len = var_end - var_start;
+            if (var_len < sizeof(value) - (pos - value)) {
+                char var_name[256];
+                
+                memcpy(var_name, var_start, var_len);
+                var_name[var_len] = '\0';
+                
+                env_value = getenv(var_name);
+                if (env_value) {
+                    env_len = strlen(env_value);
+                    remaining_len = strlen(var_end) + 1;
+                    
+                    memmove(pos + env_len, var_end, remaining_len);
+                    memcpy(pos, env_value, env_len);
+                    pos += env_len;
+                } else {
+                    pos = var_end;
+                }
+            } else {
+                pos = var_end;
+            }
+        }
+        
+        setenv(envs[i].variable, value, 1);
+    }
+}
+
 void
 run(char *startup_cmd)
 {
@@ -2849,6 +2905,7 @@ run(char *startup_cmd)
 	if (!socket)
 		die("startup: display_add_socket_auto");
 	setenv("WAYLAND_DISPLAY", socket, 1);
+	expand_env_vars();
 
 	/* Start the backend. This will enumerate outputs and inputs, become the DRM
 	 * master, etc */
