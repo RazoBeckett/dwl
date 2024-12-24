@@ -9,7 +9,7 @@ static const int bypass_surface_visibility = 0;  /* 1 means idle inhibitors will
 static const unsigned int borderpx         = 1;  /* border pixel of windows */
 static const int showbar                   = 1; /* 0 means no bar */
 static const int topbar                    = 1; /* 0 means bottom bar */
-static const char *fonts[]                 = {"monospace:size=10"};
+static const char *fonts[]                 = {"JetBrainsMono Nerd Font:weight=bold:size=11:antialias=true:autohint=true"};
 static const float rootcolor[]             = COLOR(0x000000ff);
 static const int trayspacing               = 4; /* Spacing between icons in system tray */
 static const int traymargins               = 4; /* System tray inner margins */
