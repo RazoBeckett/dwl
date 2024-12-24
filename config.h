@@ -6,28 +6,32 @@
 /* appearance */
 static const int sloppyfocus               = 1;  /* focus follows mouse */
 static const int bypass_surface_visibility = 0;  /* 1 means idle inhibitors will disable idle tracking even if it's surface isn't visible  */
+static const int smartgaps                 = 0;  /* 1 means no outer gap when there is only one window */
+static int gaps                            = 1;  /* 1 means gaps between windows are added */
+static const unsigned int gappx            = 10; /* gap pixel between windows */
 static const unsigned int borderpx         = 1;  /* border pixel of windows */
 static const int showbar                   = 1; /* 0 means no bar */
 static const int topbar                    = 1; /* 0 means bottom bar */
+static const int user_bh                   = 30;  /* 0 means that dwl will calculate barheight, >= 1 means dwl will use user_bh as the bar height. */
 static const char *fonts[]                 = {"JetBrainsMono Nerd Font:weight=bold:size=11:antialias=true:autohint=true"};
-static const float rootcolor[]             = COLOR(0x000000ff);
-static const int trayspacing               = 4; /* Spacing between icons in system tray */
-static const int traymargins               = 4; /* System tray inner margins */
+static const int trayspacing               = 6; /* Spacing between icons in system tray */
+static const int traymargins               = 2; /* System tray inner margins */
 /* This conforms to the xdg-protocol. Set the alpha to zero to restore the old behavior */
 static const float fullscreen_bg[]         = {0.1f, 0.1f, 0.1f, 1.0f}; /* You can also use glsl colors */
 static const char *cursor_theme            = "Banana-Catppuccin-Mocha";
 static const char cursor_size[]            = "32"; /* Make sure it's a valid integer, otherwise things will break */
 static const unsigned int swipe_min_threshold = 0;
 
+static const float rootcolor[]             = COLOR(0x000000ff);
 static uint32_t colors[][3]                = {
-	/*               fg          bg          border    */
-	[SchemeNorm] = { 0xbbbbbbff, 0x222222ff, 0x444444ff },
-	[SchemeSel]  = { 0xeeeeeeff, 0x005577ff, 0x005577ff },
-	[SchemeUrg]  = { 0,          0,          0x770000ff },
+    /*               fg            bg            border     */
+    [SchemeNorm] = { 0xc965bfff, 0x241b26ff, 0x2f2a3fff }, // Lavender, Base, Surface1
+    [SchemeSel]  = { 0xe39755ff, 0x241b26ff, 0x6a9eb5ff }, // Yellow, Mantle, Blue
+    [SchemeUrg]  = { 0,          0,          0x770000ff }, // Preserved from original
 };
 
 /* tagging - TAGCOUNT must be no greater than 31 */
-static char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static char *tags[] = { "", "", "", "", "", "6", "󰊱", "󰓇", "", "󰀿" };
 
 /* logging */
 static int log_level = WLR_ERROR;
@@ -166,6 +170,7 @@ static const Key keys[] = {
 	{ ALTKEY,                    XKB_KEY_k,          setmfact,       {.f = +0.05f} },
 	{ ALTKEY,                    XKB_KEY_Return,     zoom,           {0} },
 	{ ALTKEY,                    XKB_KEY_Tab,        view,           {0} },
+	{ MODKEY,                    XKB_KEY_g,          togglegaps,     {0} },
 	{ ALTKEY,                    XKB_KEY_q,          killclient,     {0} },
 	{ ALTKEY,                    XKB_KEY_t,          setlayout,      {.v = &layouts[0]} },
 	{ ALTKEY,                    XKB_KEY_f,          setlayout,      {.v = &layouts[1]} },
