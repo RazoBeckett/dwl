@@ -157,6 +157,16 @@ static const char *termcmd[] = { "ghostty", NULL };
 static const char *menucmd[] = { "wofi", NULL };
 
 static const Key keys[] = {
+	/* FN key functionality */
+	{ 0, XKB_KEY_XF86AudioRaiseVolume,  spawn, SHCMD("~/.local/bin/volufication up && kill -38 $(pidof dwmblocks)") },
+	{ 0, XKB_KEY_XF86AudioLowerVolume,  spawn, SHCMD("~/.local/bin/volufication down && kill -38 $(pidof dwmblocks)") },
+	{ 0, XKB_KEY_XF86AudioMute,         spawn, SHCMD("~/.local/bin/volufication mute && kill -38 $(pidof dwmblocks)") },
+	{ 0, XKB_KEY_XF86AudioMicMute,      spawn, SHCMD("~/.local/bin/volufication muteMic && kill -38 $(pidof dwmblocks)") },
+	/* Brightness FN */
+	{ 0, XKB_KEY_XF86MonBrightnessUp,   spawn, SHCMD("~/.local/bin/brightification up && kill -39 $(pidof dwmblocks)") },
+	{ 0, XKB_KEY_XF86MonBrightnessDown, spawn, SHCMD("~/.local/bin/brightification down && kill -39 $(pidof dwmblocks)") },
+	{ MODKEY,XKB_KEY_9,                 spawn, SHCMD("~/.local/bin/brightification up && kill -39 $(pidof dwmblocks)") },
+	{ MODKEY,XKB_KEY_8,                 spawn, SHCMD("~/.local/bin/brightification down && kill -39 $(pidof dwmblocks)") },
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
 	/* modifier                  key                 function        argument */
 	{ MODKEY,                    XKB_KEY_p,          spawn,          {.v = menucmd} },
