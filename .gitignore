@@ -19,26 +19,11 @@ dwl
 *.gch
 *.pch
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
 # Shared objects (inc. Windows DLLs)
 *.dll
 *.so
 *.so.*
 *.dylib
-
-# Static libraries
-*.lai
-*.la
-*.a
-*.la
-*.lo
-*.def
-*.exp
 
 # Dependency directories
 .dirstamp
