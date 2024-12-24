@@ -11,6 +11,8 @@ static const int showbar                   = 1; /* 0 means no bar */
 static const int topbar                    = 1; /* 0 means bottom bar */
 static const char *fonts[]                 = {"monospace:size=10"};
 static const float rootcolor[]             = COLOR(0x000000ff);
+static const int trayspacing               = 4; /* Spacing between icons in system tray */
+static const int traymargins               = 4; /* System tray inner margins */
 /* This conforms to the xdg-protocol. Set the alpha to zero to restore the old behavior */
 static const float fullscreen_bg[]         = {0.1f, 0.1f, 0.1f, 1.0f}; /* You can also use glsl colors */
 static const char *cursor_theme            = "Banana-Catppuccin-Mocha";
@@ -145,7 +147,7 @@ static const Key keys[] = {
 	{ ALTKEY,                    XKB_KEY_k,          setmfact,       {.f = +0.05f} },
 	{ ALTKEY,                    XKB_KEY_Return,     zoom,           {0} },
 	{ ALTKEY,                    XKB_KEY_Tab,        view,           {0} },
-	{ ALTKEY,                    XKB_KEY_Q,          killclient,     {0} },
+	{ ALTKEY,                    XKB_KEY_q,          killclient,     {0} },
 	{ ALTKEY,                    XKB_KEY_t,          setlayout,      {.v = &layouts[0]} },
 	{ ALTKEY,                    XKB_KEY_f,          setlayout,      {.v = &layouts[1]} },
 	{ ALTKEY,                    XKB_KEY_m,          setlayout,      {.v = &layouts[2]} },
@@ -167,7 +169,7 @@ static const Key keys[] = {
 	TAGKEYS(          XKB_KEY_7, XKB_KEY_ampersand,                  6),
 	TAGKEYS(          XKB_KEY_8, XKB_KEY_asterisk,                   7),
 	TAGKEYS(          XKB_KEY_9, XKB_KEY_parenleft,                  8),
-	{ ALTKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Q,          quit,           {0} },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Q,          quit,           {0} },
 
 	/* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
 	{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_Terminate_Server, quit, {0} },
