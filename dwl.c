@@ -1513,9 +1513,6 @@ createpointer(struct wlr_pointer *pointer)
 				libinput_device_config_scroll_set_natural_scroll_enabled(device, natural_scrolling);
 		}
 
-		/* if (libinput_device_config_scroll_has_natural_scroll(device))
-			libinput_device_config_scroll_set_natural_scroll_enabled(device, natural_scrolling); */
-
 		if (libinput_device_config_dwt_is_available(device))
 			libinput_device_config_dwt_set_enabled(device, disable_while_typing);
 
